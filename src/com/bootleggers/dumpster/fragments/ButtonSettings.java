@@ -82,6 +82,8 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     private static final String FINGERPRINT_CUSTOM_ICON = "custom_fingerprint_icon";
     private static final int GET_CUSTOM_FP_ICON = 69;
 
+    private static final String KEY_VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+
     // Masks for checking presence of hardware keys.
     // Must match values in frameworks/base/core/res/res/values/config.xml
     // Masks for checking presence of hardware keys.
@@ -99,6 +101,7 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     private SwitchPreference mButtonBrightness_sw;
     private SwitchPreference mHwKeyDisable;
     private ListPreference mTorchLongPressPowerTimeout;
+    private ListPreference mVolumeKeyCursorControl;
 
     private Preference mFilePicker;
 
@@ -261,6 +264,27 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
             prefScreen.removePreference(mPowerMenuButtonsCategory);
         }
 
+	// Cursor volume keys
+        int cursorControlAction = Settings.System.getInt(resolver,
+                Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0);
+        mVolumeKeyCursorControl = initActionList(KEY_VOLUME_KEY_CURSOR_CONTROL,
+                cursorControlAction);
+    }
+
+    private ListPreference initActionList(String key, int value) {
+        ListPreference list = (ListPreference) getPreferenceScreen().findPreference(key);
+        list.setValue(Integer.toString(value));
+        list.setSummary(list.getEntry());
+        list.setOnPreferenceChangeListener(this);
+        return list;
+    }
+
+    private void handleActionListChange(ListPreference pref, Object newValue, String setting) {
+        String value = (String) newValue;
+        int index = pref.findIndexOfValue(value);
+
+        pref.setSummary(pref.getEntries()[index]);
+        Settings.System.putInt(getContentResolver(), setting, Integer.valueOf(value));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -300,6 +324,10 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
                     .findIndexOfValue(TorchTimeout);
             mTorchLongPressPowerTimeout
                     .setSummary(mTorchLongPressPowerTimeout.getEntries()[TorchTimeoutIndex]);
+            return true;
+        } else if (preference == mVolumeKeyCursorControl) {
+            handleActionListChange(mVolumeKeyCursorControl, newValue,
+                    Settings.System.VOLUME_KEY_CURSOR_CONTROL);
             return true;
         }
         return false;
