@@ -1473,4 +1473,10 @@
     <string name="force_expanded_notifications_title">Auto expand notifications</string>
     <string name="force_expanded_notifications_summary">Show expanded notifications by default</string>
 
+    <string name="headset_starts_player_title">Headset starts Music Player</string>
+    <string name="headset_starts_player_summary">Start Music Player when a wired Headset is connected</string>
+
+    <string name="bt_starts_player_title">BT Headset starts Music Player</string>
+    <string name="bt_starts_player_summary">Start Music Player when a BT Headset is connected</string>
+
 </resources>

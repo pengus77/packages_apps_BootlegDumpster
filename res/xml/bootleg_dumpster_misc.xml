@@ -163,6 +163,18 @@
         android:summary="@string/gaming_mode_summary"
         android:defaultValue="false" />
 
+    <com.bootleggers.dumpster.preferences.SystemSettingSwitchPreference
+        android:key="headset_starts_music_player"
+        android:title="@string/headset_starts_player_title"
+        android:summary="@string/headset_starts_player_summary"
+        android:defaultValue="false" />
+
+    <com.bootleggers.dumpster.preferences.SystemSettingSwitchPreference
+        android:key="bt_starts_music_player"
+        android:title="@string/bt_starts_player_title"
+        android:summary="@string/bt_starts_player_summary"
+        android:defaultValue="false" />
+
     <Preference
         android:key="app_ops_settings"
         android:title="@string/app_ops_settings">
