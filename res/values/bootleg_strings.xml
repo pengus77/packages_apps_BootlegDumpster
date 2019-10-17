@@ -1469,4 +1469,8 @@
     <string name="volbtn_cursor_control_on">Volume up/down moves cursor left/right</string>
     <string name="volbtn_cursor_control_on_reverse">Volume up/down moves cursor right/left</string>
 
+    <!-- Auto Expand Notifications Control -->
+    <string name="force_expanded_notifications_title">Auto expand notifications</string>
+    <string name="force_expanded_notifications_summary">Show expanded notifications by default</string>
+
 </resources>
