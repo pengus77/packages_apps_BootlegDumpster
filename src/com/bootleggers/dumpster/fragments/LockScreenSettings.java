@@ -44,7 +44,7 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private SystemSettingSwitchPreference mFingerprintSuccess;
-    private SystemSettingSwitchPreference mFingerprintUnlock;
+    // private SystemSettingSwitchPreference mFingerprintUnlock;
     private PreferenceCategory mLsMisc;
 
     @Override
@@ -53,7 +53,7 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.bootleg_dumpster_lockscreen);
         mLsMisc = (PreferenceCategory) findPreference("lock_misc_cat");
         mFingerprintSuccess = (SystemSettingSwitchPreference) findPreference("fingerprint_success_vib");
-        mFingerprintUnlock = (SystemSettingSwitchPreference) findPreference("fp_unlock_keystore");
+        // mFingerprintUnlock = (SystemSettingSwitchPreference) findPreference("fp_unlock_keystore");
 
         ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
@@ -61,7 +61,7 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
 
         if (!Utils.isDeviceWithFP(getActivity())) {
             mLsMisc.removePreference(mFingerprintSuccess);
-            mLsMisc.removePreference(mFingerprintUnlock);
+            // mLsMisc.removePreference(mFingerprintUnlock);
         }
 
 
